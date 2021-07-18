@@ -10,6 +10,7 @@ import {
   Alert,
   Col,
 } from "reactstrap";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBurn, faBolt, faCopy } from "@fortawesome/free-solid-svg-icons";
 import RowSpacer from "./RowSpacer";
@@ -81,9 +82,11 @@ const Generator = () => {
                   />
                 </Col>
                 <Col>
-                  <Button color="secondary" disabled={elemsAreDisabled}>
-                    Copy to clipboard <FontAwesomeIcon icon={faCopy} />
-                  </Button>
+                  <CopyToClipboard text={mpxnVal}>
+                    <Button color="secondary" disabled={elemsAreDisabled}>
+                      Copy to clipboard <FontAwesomeIcon icon={faCopy} />
+                    </Button>
+                  </CopyToClipboard>
                 </Col>
               </Row>
             </FormGroup>
