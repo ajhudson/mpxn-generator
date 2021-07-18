@@ -9,6 +9,8 @@ import {
   Input,
   Alert,
   Col,
+  InputGroup,
+  InputGroupAddon,
 } from "reactstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,7 +44,7 @@ const Generator = () => {
   }, [mpxnType]);
 
   return (
-    <div style={{ width: "33%" }}>
+    <div>
       <Container>
         <Row>
           <h3>Generate {getMpxnText()}</h3>
@@ -71,22 +73,28 @@ const Generator = () => {
           <Form>
             <FormGroup>
               <Row>
-                <Col md="8">
-                  <Input
-                    type="text"
-                    name="generatedMpxn"
-                    id="generatedMpxn"
-                    readOnly
-                    value={mpxnVal}
-                    disabled={elemsAreDisabled}
-                  />
-                </Col>
                 <Col>
-                  <CopyToClipboard text={mpxnVal}>
-                    <Button color="secondary" disabled={elemsAreDisabled}>
-                      Copy to clipboard <FontAwesomeIcon icon={faCopy} />
-                    </Button>
-                  </CopyToClipboard>
+                  <InputGroup>
+                    <Input
+                      type="text"
+                      name="generatedMpxn"
+                      id="generatedMpxn"
+                      readOnly
+                      value={mpxnVal}
+                      disabled={elemsAreDisabled}
+                    />
+                    <InputGroupAddon addonType="append">
+                      <CopyToClipboard text={mpxnVal}>
+                        <Button
+                          color="secondary"
+                          block
+                          disabled={elemsAreDisabled}
+                        >
+                          Copy <FontAwesomeIcon icon={faCopy} />
+                        </Button>
+                      </CopyToClipboard>
+                    </InputGroupAddon>
+                  </InputGroup>
                 </Col>
               </Row>
             </FormGroup>
