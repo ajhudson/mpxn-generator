@@ -17,8 +17,7 @@ import { faBurn, faBolt, faCopy } from "@fortawesome/free-solid-svg-icons";
 import RowSpacer from "./RowSpacer";
 import MpanGenerator from "./lib/mpanGenerator";
 import NotSupportedWarning from "./NotSupportedWarning";
-
-const MPXN_TYPES = { MPAN: 1, MPRN: 2 };
+import { MPXN_TYPES } from "./mpxnTypes";
 
 const Generator = () => {
   const [mpxnType, setMpxnType] = useState(MPXN_TYPES.MPAN);
