@@ -7,7 +7,6 @@ import {
   Form,
   FormGroup,
   Input,
-  Alert,
   Col,
   InputGroup,
   InputGroupAddon,
@@ -17,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBurn, faBolt, faCopy } from "@fortawesome/free-solid-svg-icons";
 import RowSpacer from "./RowSpacer";
 import MpanGenerator from "./lib/mpanGenerator";
+import NotSupportedWarning from "./NotSupportedWarning";
 
 const MPXN_TYPES = { MPAN: 1, MPRN: 2 };
 
@@ -102,9 +102,10 @@ const Generator = () => {
         </Row>
         <RowSpacer />
         <Row>
-          <span style={{ display: elemsAreDisabled ? "block" : "none" }}>
-            <Alert color="warning">MPRN Generation is not supported yet.</Alert>
-          </span>
+          <NotSupportedWarning
+            show={elemsAreDisabled}
+            mpxnType={getMpxnText()}
+          />
 
           <ButtonGroup>
             <Button
