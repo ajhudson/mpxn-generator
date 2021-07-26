@@ -1,4 +1,6 @@
 function MpanGenerator() {
+  const getPrimeNumbers = () => [3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43];
+
   const getDistributorCodes = () =>
     new Array(27).fill(0).map((_, idx) => (idx + 10).toString()); // fills an array from 10 - 36
 
@@ -6,7 +8,7 @@ function MpanGenerator() {
     Number.parseInt(Math.random().toString().substr(2, 10));
 
   const generateCheckDigit = (firstDigits) => {
-    const primeNumbers = [3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43];
+    const primeNumbers = getPrimeNumbers();
     const sum = firstDigits
       .split("")
       .map((n, idx) => Number.parseInt(n) * primeNumbers[idx])
@@ -18,7 +20,7 @@ function MpanGenerator() {
   };
 
   const isNumberValid = (mpanCore) => {
-    const primeNumbers = [3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43];
+    const primeNumbers = getPrimeNumbers();
     const checkDigit = Number.parseInt(
       mpanCore.substr(mpanCore.length - 1, mpanCore.length)
     );

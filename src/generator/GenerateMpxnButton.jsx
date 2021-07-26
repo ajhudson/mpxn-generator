@@ -22,7 +22,7 @@ const GenerateMpxnButton = ({ active, mpxnType, onClickFn }) => {
 
 GenerateMpxnButton.propTypes = {
   active: PropTypes.bool.isRequired,
-  mpxnType: PropTypes.string.isRequired,
+  mpxnType: PropTypes.number.isRequired,
   onClickFn: PropTypes.func.isRequired,
 };
 
