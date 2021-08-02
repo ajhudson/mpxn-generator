@@ -24,6 +24,7 @@ describe("tests for generate button", () => {
     );
     screen.getByRole("button", { value: /^Generate MPRN/gi });
     screen.getByTitle("Gas Flame");
+    expect(clickFn).not.toHaveBeenCalled();
   });
 
   it("should render an MPAN generation button", () => {
@@ -36,6 +37,7 @@ describe("tests for generate button", () => {
     );
     screen.getByRole("button", { value: /^Generate MPAN/gi });
     screen.getByTitle("Electricity Bolt");
+    expect(clickFn).not.toHaveBeenCalled();
   });
 
   it("should invoke the click function when the button is clicked", () => {
