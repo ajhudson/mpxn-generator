@@ -16,30 +16,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBurn, faBolt, faCopy } from "@fortawesome/free-solid-svg-icons";
 import RowSpacer from "./RowSpacer";
 import MpanGenerator from "./lib/mpanGenerator";
+import MprnGenerator from "./lib/mprnGenerator";
 import NotSupportedWarning from "./NotSupportedWarning";
 import { MPXN_TYPES } from "./mpxnTypes";
 
 const Generator = () => {
   const [mpxnType, setMpxnType] = useState(MPXN_TYPES.MPAN);
   const [mpxnVal, setMpxnVal] = useState("");
-  const [elemsAreDisabled, setElemsAreDisabled] = useState(false);
+  const [elemsAreDisabled] = useState(false);
 
   const getMpxnText = () =>
     mpxnType === MPXN_TYPES.MPAN ? "MPAN (Electricity)" : "MPRN (Gas)";
 
   const generateMpxn = () => {
-    if (mpxnType === MPXN_TYPES.MPRN) {
-      return;
-    }
+    const mpxnGenerator =
+      mpxnType === MPXN_TYPES.MPRN ? new MprnGenerator() : new MpanGenerator();
 
-    const mpanGenerator = new MpanGenerator();
-    const mpanCore = mpanGenerator.generate();
-
-    setMpxnVal(mpanCore);
+    const mpxnNumber = mpxnGenerator.generate();
+    setMpxnVal(mpxnNumber);
   };
 
   useEffect(() => {
-    setElemsAreDisabled(mpxnType === MPXN_TYPES.MPRN);
+    setMpxnVal("");
   }, [mpxnType]);
 
   return (
