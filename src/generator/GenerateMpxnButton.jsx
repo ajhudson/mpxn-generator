@@ -7,6 +7,7 @@ import { MPXN_TYPES } from "./mpxnTypes";
 
 const GenerateMpxnButton = ({ active, mpxnType, onClickFn }) => {
   const isGas = mpxnType === MPXN_TYPES.MPRN;
+  const buttonText = `MP${isGas ? "R" : "A"}N`;
   const icon = isGas ? (
     <FontAwesomeIcon icon={faBurn} title="Gas Flame" />
   ) : (
@@ -15,7 +16,7 @@ const GenerateMpxnButton = ({ active, mpxnType, onClickFn }) => {
 
   return (
     <Button color="primary" onClick={onClickFn} active={active}>
-      Generate {mpxnType} {icon}
+      Generate {buttonText} {icon}
     </Button>
   );
 };

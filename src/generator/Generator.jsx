@@ -13,12 +13,14 @@ import {
 } from "reactstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBurn, faBolt, faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import RowSpacer from "./RowSpacer";
 import MpanGenerator from "./lib/mpanGenerator";
 import MprnGenerator from "./lib/mprnGenerator";
 import NotSupportedWarning from "./NotSupportedWarning";
 import { MPXN_TYPES } from "./mpxnTypes";
+import GenerateMpxnButton from "./GenerateMpxnButton";
+import WidgetHeader from "./WidgetHeader";
 
 const Generator = () => {
   const [mpxnType, setMpxnType] = useState(MPXN_TYPES.MPAN);
@@ -44,25 +46,21 @@ const Generator = () => {
     <div>
       <Container>
         <Row>
-          <h3>Generate {getMpxnText()}</h3>
+          <WidgetHeader mpxnType={mpxnType} />
         </Row>
         <Row>
           <ButtonGroup>
-            <Button
-              color="primary"
-              onClick={() => setMpxnType(MPXN_TYPES.MPAN)}
+            <GenerateMpxnButton
+              mpxnType={MPXN_TYPES.MPAN}
               active={mpxnType === MPXN_TYPES.MPAN}
-            >
-              Generate MPAN <FontAwesomeIcon icon={faBolt} />
-            </Button>
+              onClickFn={() => setMpxnType(MPXN_TYPES.MPAN)}
+            />
 
-            <Button
-              color="primary"
-              onClick={() => setMpxnType(MPXN_TYPES.MPRN)}
+            <GenerateMpxnButton
+              mpxnType={MPXN_TYPES.MPRN}
               active={mpxnType === MPXN_TYPES.MPRN}
-            >
-              Generate MPRN <FontAwesomeIcon icon={faBurn} />
-            </Button>
+              onClickFn={() => setMpxnType(MPXN_TYPES.MPRN)}
+            />
           </ButtonGroup>
         </Row>
         <RowSpacer />
