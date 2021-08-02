@@ -1,3 +1,5 @@
+import DNO from "./dno";
+
 function MpanGenerator() {
   const getPrimeNumbers = () => [3, 5, 7, 13, 17, 19, 23, 29, 31, 37, 41, 43];
 
@@ -54,9 +56,14 @@ function MpanGenerator() {
     return mpanCore;
   }
 
+  const getDnoById = (id) => {
+    return DNO[id];
+  };
+
   return {
     generate,
     isNumberValid,
+    getDnoById,
   };
 }
 

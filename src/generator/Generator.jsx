@@ -18,6 +18,7 @@ import { MPXN_TYPES } from "./mpxnTypes";
 import GenerateMpxnButton from "./GenerateMpxnButton";
 import WidgetHeader from "./WidgetHeader";
 import CopyButton from "./CopyButton";
+import DtoLabel from "./DtoLabel";
 
 const Generator = () => {
   const [mpxnType, setMpxnType] = useState(MPXN_TYPES.MPAN);
@@ -86,6 +87,10 @@ const Generator = () => {
               Generate
             </Button>
           </ButtonGroup>
+        </Row>
+        <RowSpacer />
+        <Row>
+          <DtoLabel mpxnType={mpxnType} mpxnValue={mpxnVal} />
         </Row>
       </Container>
     </div>
