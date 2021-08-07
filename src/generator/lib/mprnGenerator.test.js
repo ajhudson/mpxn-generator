@@ -1,6 +1,6 @@
 import MprnGenerator from "./mprnGenerator";
 
-describe.only("tests to generate a valid gas MPRN number", () => {
+describe("tests to generate a valid gas MPRN number", () => {
   let generator;
 
   beforeEach(() => {
