@@ -30,13 +30,6 @@ function MpanGenerator() {
       mpanCore.substr(mpanCore.length - 1, mpanCore.length)
     );
 
-    const debugInfo = {
-      mpanCore,
-      length: mpanCore.length,
-    };
-
-    console.log(debugInfo);
-
     const sum = mpanCore
       .substr(0, mpanCore.length - 1)
       .split("")
@@ -59,10 +52,8 @@ function MpanGenerator() {
     const mpanCore = firstDigits + checkDigit;
     const isValid = isNumberValid(mpanCore);
 
-    console.log(`MPAN Core: ${mpanCore} is valid? ${isValid}`);
-
     if (!isValid) {
-      throw new Error(`MPAN Core ${mpanCore} is not valid, please try again`);
+      throw new Error(`MPAN Core ${mpanCore} is not valid`);
     }
 
     return mpanCore;

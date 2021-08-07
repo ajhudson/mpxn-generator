@@ -16,7 +16,12 @@ function MprnGenerator() {
       .map(() => generateRandom())
       .join("");
 
-    const mprn = firstTwoDigits.toString() + digits.toString();
+    const mprnPrefix = firstTwoDigits.toString() + digits.toString();
+    const mprn = mprnPrefix + calcCheckSum(mprnPrefix);
+
+    if (!isNumberValid(mprn)) {
+      throw new Error(`MPRN ${mprn} is not valid`);
+    }
 
     return mprn;
   };
@@ -27,26 +32,14 @@ function MprnGenerator() {
       mprn.length - checkDigitsLen,
       checkDigitsLen
     );
-    const verifyArr = mprn
-      .substr(0, lenWithoutCheckDigits)
-      .split("")
-      .map((val) => Number.parseInt(val));
 
-    const total = verifyArr
-      .map((val, idx) => val * (lenWithoutCheckDigits - idx))
-      .reduce((prev, curr) => prev + curr);
-
-    const remainder = (total % 11).toString();
-
-    const calculatedCheck =
-      remainder.length < checkDigitsLen
-        ? zeroChar.repeat(remainder.length) + remainder.toString()
-        : remainder.toString();
+    const calculatedCheck = calcCheckSum(mprn.substr(0, lenWithoutCheckDigits));
 
     return calculatedCheck === checkDigits;
   };
 
   const calcCheckSum = (mprnPrefix) => {
+    // https://en.everybodywiki.com/Meter_Point_Reference_Number
     const digits = mprnPrefix.split("").map((val) => Number.parseInt(val));
 
     const total = digits
@@ -63,12 +56,9 @@ function MprnGenerator() {
     return formattedCheckDigit;
   };
 
-  const generateCheckDigit = (mprnPrefix) => calcCheckSum(mprnPrefix);
-
   return {
     generate,
     isNumberValid,
-    generateCheckDigit,
   };
 }
 
