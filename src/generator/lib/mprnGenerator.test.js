@@ -29,4 +29,11 @@ describe.only("tests to generate a valid gas MPRN number", () => {
 
     expect(isValid).toBeTruthy();
   });
+
+  it("should generate check digits correctly", () => {
+    const mNumber = "39384244";
+    const checkDigit = generator.generateCheckDigit(mNumber);
+
+    expect(checkDigit).toBe("03");
+  });
 });

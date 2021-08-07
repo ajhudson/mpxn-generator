@@ -1,4 +1,7 @@
 function MprnGenerator() {
+  const zeroChar = "0";
+  const checkDigitsLen = 2;
+
   const generateRandomWithinRange = (min, max) =>
     Math.floor(Math.random() * (max - min) + min);
 
@@ -19,10 +22,11 @@ function MprnGenerator() {
   };
 
   const isNumberValid = (mprn) => {
-    const zeroChar = "0";
-    const checkDigitsLen = 2;
     const lenWithoutCheckDigits = mprn.length - checkDigitsLen;
-    const check = mprn.substr(mprn.length - checkDigitsLen, checkDigitsLen);
+    const checkDigits = mprn.substr(
+      mprn.length - checkDigitsLen,
+      checkDigitsLen
+    );
     const verifyArr = mprn
       .substr(0, lenWithoutCheckDigits)
       .split("")
@@ -39,12 +43,32 @@ function MprnGenerator() {
         ? zeroChar.repeat(remainder.length) + remainder.toString()
         : remainder.toString();
 
-    return calculatedCheck === check;
+    return calculatedCheck === checkDigits;
   };
+
+  const calcCheckSum = (mprnPrefix) => {
+    const digits = mprnPrefix.split("").map((val) => Number.parseInt(val));
+
+    const total = digits
+      .map((val, idx) => val * (mprnPrefix.length - idx))
+      .reduce((prev, curr) => prev + curr);
+
+    const checkDigit = (total % 11).toString();
+
+    const formattedCheckDigit =
+      checkDigit.length < checkDigitsLen
+        ? zeroChar.repeat(checkDigit.length) + checkDigit.toString()
+        : checkDigit.toString();
+
+    return formattedCheckDigit;
+  };
+
+  const generateCheckDigit = (mprnPrefix) => calcCheckSum(mprnPrefix);
 
   return {
     generate,
     isNumberValid,
+    generateCheckDigit,
   };
 }
 
