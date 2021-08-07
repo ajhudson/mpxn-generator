@@ -1,6 +1,6 @@
 import MprnGenerator from "./mprnGenerator";
 
-describe("tests to generate a valid gas MPRN number", () => {
+describe.only("tests to generate a valid gas MPRN number", () => {
   let generator;
 
   beforeEach(() => {
@@ -22,5 +22,11 @@ describe("tests to generate a valid gas MPRN number", () => {
     expect(firstTwoDigits).toBeLessThanOrEqual(73);
   });
 
-  // TODO: https://en.everybodywiki.com/Meter_Point_Reference_Number
+  it("should return true if the MPRN number is valid", () => {
+    // Reference: https://en.everybodywiki.com/Meter_Point_Reference_Number
+    const mprn = "3938424403";
+    const isValid = generator.isNumberValid(mprn);
+
+    expect(isValid).toBeTruthy();
+  });
 });
