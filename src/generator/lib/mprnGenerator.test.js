@@ -11,7 +11,7 @@ describe("tests to generate a valid gas MPRN number", () => {
     generator = null;
   });
 
-  it.only("should be between 8 and 10 characters in length and first 2 digits should be between 10-73", () => {
+  it("should be between 8 and 10 characters in length and first 2 digits should be between 10-73", () => {
     const mprn = generator.generate();
     const firstTwoDigits = Number.parseInt(mprn.substr(0, 2));
 
@@ -21,4 +21,6 @@ describe("tests to generate a valid gas MPRN number", () => {
     expect(firstTwoDigits).toBeGreaterThanOrEqual(10);
     expect(firstTwoDigits).toBeLessThanOrEqual(73);
   });
+
+  // TODO: https://en.everybodywiki.com/Meter_Point_Reference_Number
 });

@@ -11,7 +11,7 @@ describe("tests for the mpan generator", () => {
     mpanGenerator = null;
   });
 
-  it.only("should generate a string of 13 characters", () => {
+  it("should generate a string of 13 characters", () => {
     const mpan = mpanGenerator.generate();
     expect(mpan).toHaveLength(13);
   });

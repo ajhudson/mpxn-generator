@@ -7,7 +7,10 @@ function MpanGenerator() {
     new Array(27).fill(0).map((_, idx) => (idx + 10).toString()); // fills an array from 10 - 36
 
   const generateUid = () =>
-    Number.parseInt(Math.random().toString().substr(2, 10));
+    new Array(10)
+      .fill(0)
+      .map((_, idx) => Math.floor(Math.random() * 10))
+      .join("");
 
   const generateCheckDigit = (firstDigits) => {
     const primeNumbers = getPrimeNumbers();
@@ -26,6 +29,13 @@ function MpanGenerator() {
     const checkDigit = Number.parseInt(
       mpanCore.substr(mpanCore.length - 1, mpanCore.length)
     );
+
+    const debugInfo = {
+      mpanCore,
+      length: mpanCore.length,
+    };
+
+    console.log(debugInfo);
 
     const sum = mpanCore
       .substr(0, mpanCore.length - 1)
@@ -48,6 +58,8 @@ function MpanGenerator() {
     const checkDigit = generateCheckDigit(firstDigits).toString();
     const mpanCore = firstDigits + checkDigit;
     const isValid = isNumberValid(mpanCore);
+
+    console.log(`MPAN Core: ${mpanCore} is valid? ${isValid}`);
 
     if (!isValid) {
       throw new Error(`MPAN Core ${mpanCore} is not valid, please try again`);
