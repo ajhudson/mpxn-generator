@@ -9,7 +9,7 @@ function MprnGenerator() {
 
   const generate = () => {
     const firstTwoDigits = generateRandomWithinRange(10, 73);
-    const len = generateRandomWithinRange(6, 8);
+    const len = generateRandomWithinRange(4, 6);
 
     const digits = new Array(len)
       .fill(0)
