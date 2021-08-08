@@ -6,13 +6,13 @@ It is possible to install this as an unpacked Chrome extension as there is a man
 
 ---
 
-## MPAN Numbers
+## MPAN Numbers (Electricity)
 
 This tool will create a 13-digit long MPAN core. The first two digits will be between 10-36 to denote the DNO (Distribution Network Operator) whilst the last digit is a calculated checksum to verify the previous 12 digits using an [algorithm](https://en.wikipedia.org/wiki/Meter_Point_Administration_Number#Check_digit_modulus).
 
 ---
 
-## MPRN Numbers
+## MPRN Numbers (Gas)
 
 This tool will generate a number between 8-10 digits long (MPRN numbers can be between 6-10 but I opted to make them slightly longer as that is the more common format).
 
